@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>event</title>
+  </head>
+  <body>
+<style>
+.box0 {
+  width: 10rem;
+  height: 10rem;
+  background-color: lightgrey;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.box1 {
+  margin-top: 1rem;
+  background-color: darkgrey;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.box2 {
+  margin-top: 1rem;
+  color: #ddd;
+  background-color: #444;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.box3 {
+  margin-top: 1rem;
+  color: #eee;
+  background-color: #222;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+</style>
+
+<script>
+  function oclick(n) {
+    console.log('click', n);
+  }
+
+  function oclickStop(n) {
+    //event.stopPropagation();
+   
+    event.stopImmediatePropagation();
+    //This will stop immediately for all events attached to same element
+    console.log('click&stop', n);
+  }
+</script>
+
+<div style="display: flex; justify-content: space-evenly">
+    <div class="box0">
+    onclick event
+    <div class="box1" onclick="oclick(1)">
+      click1  
+      <div class="box2" onclick="oclick(2)">
+      click2
+        <div class="box3" onclick="oclick(3)">
+        click3
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="box0">
+    onclick event
+    <div class="box1" onclick="oclick(11)">
+      click1  
+      <div class="box2" onclick="oclickStop(22)">
+      click2
+        <div class="box3" onclick="oclick(33)">
+        click3
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+</body>
+</html>
